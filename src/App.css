@@ -1,0 +1,67 @@
+body,html {
+
+  /*Creates background Gradient*/
+  background-color:#151a1e;
+  height:100%;
+
+  overflow-y:hidden;
+
+}
+.App{
+  color:#dbd1b7;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+header{
+  text-align: left;
+  font-size:1.5rem;
+  font-weight:800;
+}
+
+.headline-container{
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.headline{
+  font-size:2.3rem;
+}
+.headline-small{
+  font-size:1.6rem;
+  
+}
+@media only screen and (min-width: 601px) {
+  
+.headline-container{
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+}
+@media only screen and (max-width: 600px) {
+
+  .headline-container{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    width:90%
+
+  }
+  .headline{
+    font-size:1.8rem;
+  }
+  .headline-small{
+    font-size:1.5rem;
+    
+  }
+}
+.home{
+}
