@@ -1,5 +1,6 @@
 # Financial Aid Evaluation Web App
-
+Winner of the 2021 Congressional App Challenge in Texas's 32nd Congressional District. Submission can be found here: 
+https://www.congressionalappchallenge.us/21-TX32/
 ## Overview
 This single-page web application helps users evaluate their financial aid offers. Users can select their school, specify whether they're in-state or out-of-state, enter their aid offer, and then receive a grade from 0-100 based on the quality of their aid offer.
 
