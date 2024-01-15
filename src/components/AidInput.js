@@ -1,17 +1,15 @@
-import React, { useEffect, useState, setVisible, useRef, useContext } from "react";
+import React, {useContext } from "react";
 import "../pages.css"
 import { motion } from 'framer-motion'
 import { Link } from "react-router-dom";
-import { SchoolContext, useValues }  from "../contexts/SchoolContext";
 import { FormContext } from "../contexts/FormContexts";
 import AidInputBox from "./widgets/AidInputBox";
 import Radios from './widgets/Radios'
-import Footer from "./widgets/Footer";
 import "../pages.css"
 //Aid input is the second page
 function AidInput() {
     const { dropdownItem } = useContext(FormContext);
-    const [choice, setChoice] = dropdownItem;
+    const [choice ] = dropdownItem;
 
     //framer varients
     const variants={

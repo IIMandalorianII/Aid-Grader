@@ -1,7 +1,9 @@
-/*School input CSS*/
-.school-input{
 
-}
+  
+  .school-input:focus {
+    border-color: #3C9D40; /* Slightly darker border on focus for better visibility */
+    box-shadow: 0 0 8px 0 rgba(76, 175, 80, 0.4); /* Subtle shadow for a modern effect */
+  }
 .school-input-container{
     text-align: center;
     margin: 0;
@@ -125,8 +127,6 @@ Styling for the Results Page */
         margin-top:2em;
         margin-bottom:1em;
     }
-}
-.score-container{
 }
 @media only screen and (min-width: 601px) {
     .fade-rule{

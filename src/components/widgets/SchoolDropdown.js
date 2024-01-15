@@ -1,37 +1,33 @@
-import React, { useEffect, useState, setVisible, useRef, useContext } from "react";
-import { SchoolContext, useValues }  from '../../contexts/SchoolContext';
-import { FormContext } from '../../contexts/FormContexts'
-import "../../pages.css"
+import React, {useEffect, useContext } from 'react';
+import { useValues } from '../../contexts/SchoolContext';
+import { FormContext } from '../../contexts/FormContexts';
+import '../../pages.css';
 
 function SchoolDropdown() {
     const universities = useValues();
-    const shorten = universities.filter((university) => 
-        university.INSTNM.length < 40
-    );
+    const shorten = universities.filter(university => university.INSTNM.length < 40);
     const { dropdownItem } = useContext(FormContext);
     const [choice, setChoice] = dropdownItem;
-    const [change, setChange] = useState(false)
-    function getChoice(){
-        const select = document.getElementById('schools');
-        const val = (change ? select.options[select.selectedIndex].text : ' ')
-        return val
 
+    // useEffect hook to log the choice only when it changes
+    useEffect(() => {
+        console.log(choice);
+    }, [choice]);
 
-    }
+    // Function to handle dropdown change
+    const handleDropdownChange = (event) => {
+        setChoice(event.target.value);
+    };
 
-    
     return (
-        <div className="dropdown">
-            <select className="dropdown-content" onClick= {() => {setChange(true);setChoice(getChoice())}} placeholder="Search... " name="schools" id="schools">
-            {shorten.map((university, index) => (
-              
-              <option value={university}>{university.INSTNM}</option>
-           ))}
-
-            </select>
-            {console.log(choice)}
-        </div>
-    )
+        <select id="schools" onChange={handleDropdownChange}>
+            {shorten.map(university => (
+                <option key={university.ID} value={university.INSTNM}>
+                    {university.INSTNM}
+                </option>
+            ))}
+        </select>
+    );
 }
 
-export default SchoolDropdown
+export default SchoolDropdown;

@@ -1,19 +1,17 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useContext, useState } from "react";
 import { FormContext } from '../contexts/FormContexts'
-import { SchoolContext, SchoolProvider, useValues } from '../contexts/SchoolContext'
+import { useValues } from '../contexts/SchoolContext'
 import { motion } from "framer-motion";
 import '../pages.css'
-import Footer from './widgets/Footer'
 import CountUp from 'react-countup';
 //Result is the final page
 function Result() {
     //context variables
     const universities = useValues();
     const { dropdownItem, aidAmt, state } = useContext(FormContext);
-    const [choice, setChoice] = dropdownItem
-    const [aidInput, setAidInput] = aidAmt
-    const [stateStatus, setStateStatus] = state;
+    const [choice] = dropdownItem
+    const [aidInput] = aidAmt
+    const [stateStatus] = state;
     const [phrase, setPhrase] = useState("meh");
     
     //local state variables
@@ -37,7 +35,6 @@ function Result() {
     }
 
     );
-    const countUpRef = useRef(null);
 
 
     const inStateTuition = filteredData.TUITIONFEE_IN;
@@ -62,7 +59,6 @@ function Result() {
         if(stateStatus===0){
 
             function getVal(){
-                let pts = 0
                 return (inStateTuition - aidInput < 500) ? 95  
                : (inStateTuition - aidInput < 5000) ? 80 
                  : (inStateTuition - aidInput < 15000) ?  50
@@ -77,7 +73,6 @@ function Result() {
   
         } else{
             function getValOut(){
-                let pts = 0
                 return (outStateTuition - aidInput < 500) ? 90  
                : (outStateTuition - aidInput < 5000) ? 70
                  : (outStateTuition - aidInput < 15000) ?  40
@@ -147,7 +142,6 @@ function Result() {
                     variants={variants}
                     initial={{ x:'-50%',
                     opacity:0,
-                    x:'-50%',
                 }}
                     animate={{
                         color:colorProgression(), 
@@ -163,7 +157,7 @@ function Result() {
                     > 
                     <CountUp delay={1} start={0} end={score}  duration={3}
                     suffix="/100" >
-                        {({ countUpRef, start }) => (
+                        {({ countUpRef }) => (
                             <div>
                             <span ref={countUpRef} className='score'/>
                             </div>
@@ -201,7 +195,7 @@ function Result() {
                             <div>
                                 Tuition Per Year (Before Aid):&nbsp;
                                 <span className="resultValue">$
-                               {stateStatus == "0"
+                               {stateStatus === "0"
                                       ? inStateTuition.toLocaleString()
                                      : outStateTuition.toLocaleString()}
                                 </span>
@@ -211,7 +205,7 @@ function Result() {
                             <div>
                                 Your Net Price:&nbsp;
                                 <span className="resultValue"> $
-                                {stateStatus == "1"
+                                {stateStatus === "1"
                                       ? (outStateTuition - aidInput).toLocaleString()
                                      : (inStateTuition - aidInput).toLocaleString()}
                                 </span>

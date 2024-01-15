@@ -4,7 +4,7 @@ import Home from './components/Home'
 import UniversityInput from './components/UniversityInput';
 import AidInput from './components/AidInput';
 import Result from './components/Result';
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import { Route, Switch, useLocation } from "react-router-dom";
 import { SchoolProvider } from './contexts/SchoolContext'
 import {FormProvider} from './contexts/FormContexts'

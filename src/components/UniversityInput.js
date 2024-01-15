@@ -8,7 +8,7 @@ import { FormContext } from '../contexts/FormContexts'
 function UniversityInput() {
     //context variables
     const { dropdownItem, } = useContext(FormContext);
-    const [choice, setChoice] = dropdownItem;
+    const [choice] = dropdownItem;
     
     //State variables
    

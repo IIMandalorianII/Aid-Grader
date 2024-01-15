@@ -15,7 +15,6 @@ function Home() {
         exit:{
             y: '-300px',
              opacity: 0,
-           
         }
     }
     return (
@@ -40,7 +39,7 @@ function Home() {
                     How will you stack up?
                 </h1>
                 <Link to="/school">
-                    <a
+                    <button
                         
                         type="submit"
                         className={'btnNext'}
@@ -49,7 +48,7 @@ function Home() {
                        
                     >
                         Grade Me!
-                    </a>
+                    </button>
                 </Link> 
                 <AnimatePresence></AnimatePresence>
 
