@@ -1,28 +1,24 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useMemo } from 'react';
+import universitiesData from '../data/UniversityData.json'; // Ensure the path is correct
 
 export const SchoolContext = createContext();
 
-export const useValues = () => { 
-  return useContext(SchoolContext);
-}
+export const useSchoolData = () => useContext(SchoolContext);
 
-export const SchoolProvider = (props) => {
-    const [universities, setUniversities] = useState([]);
+export const SchoolProvider = ({ children }) => {
+    // Directly use imported data, assuming the data won't change
+    // No need for loading or error states
+    const [universities] = useState(universitiesData);
 
-    // Fetches data only once when the component mounts
-    useEffect(() => {
-        const getData = async () => {
-            // Get data and convert to json
-            const data = await (await fetch('./UniversityData.json')).json();
-            setUniversities(data);
-        };
-
-        getData();
-    }, []); // Empty dependency array ensures this runs only once
+    // Since the universities data is static and loaded instantly from a local file,
+    // you can simplify the context value to just the data without loading or error states
+    const contextValue = useMemo(() => ({
+        universities,
+    }), [universities]);
 
     return (
-        <SchoolContext.Provider value={universities}>
-            {props.children}
+        <SchoolContext.Provider value={contextValue}>
+            {children}
         </SchoolContext.Provider>
     );
 };

@@ -1,23 +1,26 @@
 import React, {useEffect, useContext } from 'react';
-import { useValues } from '../../contexts/SchoolContext';
+import { useSchoolData } from '../../contexts/SchoolContext';
 import { FormContext } from '../../contexts/FormContexts';
 import '../../pages.css';
 
 function SchoolDropdown() {
-    const universities = useValues();
-    const shorten = universities.filter(university => university.INSTNM.length < 40);
+    const { universities, isLoading, error } = useSchoolData(); // Adjusted to use the new context structure
     const { dropdownItem } = useContext(FormContext);
     const [choice, setChoice] = dropdownItem;
 
-    // useEffect hook to log the choice only when it changes
+    // Filter universities based on name length
+    const shorten = universities?.filter(university => university.INSTNM.length < 40) || [];
+
     useEffect(() => {
         console.log(choice);
     }, [choice]);
 
-    // Function to handle dropdown change
     const handleDropdownChange = (event) => {
         setChoice(event.target.value);
     };
+
+    if (isLoading) return <p>Loading universities...</p>; // Handle loading state
+    if (error) return <p>Error fetching universities: {error.message}</p>; // Handle error state
 
     return (
         <select id="schools" onChange={handleDropdownChange}>

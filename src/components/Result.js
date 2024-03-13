@@ -1,13 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
 import { FormContext } from '../contexts/FormContexts'
-import { useValues } from '../contexts/SchoolContext'
+import { useSchoolData } from '../contexts/SchoolContext'
 import { motion } from "framer-motion";
 import '../pages.css'
 import CountUp from 'react-countup';
 //Result is the final page
 function Result() {
     //context variables
-    const universities = useValues();
+    const universities = useSchoolData();
     const { dropdownItem, aidAmt, state } = useContext(FormContext);
     const [choice] = dropdownItem
     const [aidInput] = aidAmt
