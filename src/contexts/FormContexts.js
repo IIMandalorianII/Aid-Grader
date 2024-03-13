@@ -1,9 +1,14 @@
 //Includes form state data accross all routes
 
-import React, {createContext, useState} from 'react'
+import React, { createContext, useState } from 'react';
 
 export const FormContext = createContext();
 
+/**
+ * Provides a context for form data.
+ * @param {Object} props - The component props.
+ * @returns {JSX.Element} The form provider component.
+ */
 export const FormProvider = (props) => {
     //Existing Context
   
