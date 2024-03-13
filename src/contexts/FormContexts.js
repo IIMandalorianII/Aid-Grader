@@ -1,34 +1,39 @@
-//Includes form state data accross all routes
-
 import React, { createContext, useState } from 'react';
 
-export const FormContext = createContext();
+// Custom hook to encapsulate form state logic
+function useFormState() {
+  const [choice, setChoice] = useState("Alabama A & M University");
+  const [aidInput, setAidInput] = useState("");
+  const [stateStatus, setStateStatus] = useState(0); // 0 = instate, 1 = out of state
+
+  return {
+    choice, setChoice,
+    aidInput, setAidInput,
+    stateStatus, setStateStatus,
+  };
+}
+
+// Context setup with a default structure
+export const FormContext = createContext({
+  choice: "",
+  setChoice: () => {},
+  aidInput: "",
+  setAidInput: () => {},
+  stateStatus: 0,
+  setStateStatus: () => {},
+});
 
 /**
- * Provides a context for form data.
- * @param {Object} props - The component props.
- * @returns {JSX.Element} The form provider component.
+ * Provides a context for form data across all routes.
  */
-export const FormProvider = (props) => {
-    //Existing Context
-  
-    //Values to be passed into context provider
-    const [choice, setChoice] = useState("Alabama A & M University");
-    const [aidInput, setAidInput] = useState("")
-    //0 = instate, 1 = out of state
-    const [stateStatus, setStateStatus] = useState(0)
+export const FormProvider = ({ children }) => {
+  const formState = useFormState();
 
-    return (
-        <FormContext.Provider
-          value={{
-            dropdownItem: [choice, setChoice],
-            aidAmt: [aidInput, setAidInput],
-            state: [stateStatus, setStateStatus]
-          }}
-        >
-          {props.children}
-        </FormContext.Provider>
-      );
+  return (
+    <FormContext.Provider value={formState}>
+      {children}
+    </FormContext.Provider>
+  );
 };
 
 export default FormProvider;

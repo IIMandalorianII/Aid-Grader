@@ -1,43 +1,44 @@
-import React, { useContext, useState } from 'react'
-import { FormContext } from "../../contexts/FormContexts"
-import { AnimatePresence, motion } from 'framer-motion'
+import React, { useContext, useState } from 'react';
+import { FormContext } from "../../contexts/FormContexts";
+import { AnimatePresence, motion } from 'framer-motion';
+
 function AidInputBox() {
-    //Context variables
-    const { aidAmt } = useContext(FormContext)
-    const [aidInput, setAidInput] = aidAmt;
-    const [warning, setWarning] = useState(false)
+    // Context variables adjusted for direct access
+    const { aidInput, setAidInput } = useContext(FormContext);
+    const [warning, setWarning] = useState(false);
+
     const aidUpdate = (e) => {
-        setAidInput(e.target.value);
-        aidInput.toString().length === 5 ? setWarning(true) : setWarning(false);
-    }
+        const input = e.target.value;
+        setAidInput(input);
+        input.length === 5 ? setWarning(true) : setWarning(false);
+    };
+
     return (
         <div>
             <input
-            className='aid-input'
-            value={aidInput}
-            onChange={aidUpdate}
-            max='100000'
-            placeholder="Enter Aid"
-            maxlength="5"
-            >
-            </input>
+                className='aid-input'
+                value={aidInput}
+                onChange={aidUpdate}
+                type="number" // Ensure numeric input
+                max="99999"
+                placeholder="Enter Aid"
+                maxLength="5" // Corrected to camelCase
+            />
             <AnimatePresence>
-              {warning && (
-                <motion.div
-                  className="error"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    type: "spring",
-                  }}
-
-                >
-                  Maximum: $99,999
-                </motion.div>
-              )}
+                {warning && (
+                    <motion.div
+                        className="error"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }} // Provide an exit animation
+                        transition={{ type: "spring" }}
+                    >
+                        Maximum: $99,999
+                    </motion.div>
+                )}
             </AnimatePresence>
         </div>
-    )
+    );
 }
 
-export default AidInputBox
+export default AidInputBox;
